@@ -55,7 +55,7 @@ def getCurrentNumber():
 def getGuicheArray():
     return flask.jsonify(guicheArray)
 
-@app.route('/getTicket')
+@app.route('/getTicket', methods = ['GET', 'POST'])
 def getTicket():
     global guicheArray
     global currentNumber
