@@ -55,15 +55,6 @@ def getCurrentNumber():
 def getGuicheArray():
     return flask.jsonify(guicheArray)
 
-@app.route('/checkTicket')
-def checkTicket():
-    global currentNumber
-    global highestNumber
-    if currentNumber == highestNumber -1:
-        return flask.jsonify(True)
-    else:
-        return flask.jsonify(False)
-
 @app.route('/getTicket')
 def getTicket():
     global guicheArray
