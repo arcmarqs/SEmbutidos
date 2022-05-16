@@ -1,0 +1,87 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>Raspberry Pi</h1>
+
+<table>
+    <tr>
+        <th>Endpoint</th>
+        <th>Description</th>
+        <th>Test</th>
+    </tr>
+    <tr>
+        <td>
+            <tt>/aumentar_num_senhas</tt>
+        </td>
+        <td>
+            Quando uma pessoa carrega no botão "Tirar senha".
+        </td>
+        <td>
+        <form action="/aumentar_num_senhas">
+            <input type="Submit" value="Pedir senha"/>
+        </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/aumentar_num_atendidos</tt>
+        </td>
+        <td>
+            Depois do Arduino dar a confirmação de que o pin é válido, 
+            incrementamos por 1 unidade o número de pessoas que já foram 
+            atendidas. 
+        </td>
+        <td>
+            <form action="/aumentar_num_atendidos">
+                <input type="Submit" value="Checar num pessoas atendidas"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/gerar_pin</tt>
+        </td>
+        <td>
+            Gera um pin de 4 dígitos aleatoriamente.
+        </td>
+        <td>
+            <form action="/gerar_pin">
+                <input type="Submit" value="Ver pin"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/esta_quase</tt>
+        </td>
+        <td>
+            Vamos para este endpoint quando o nosso número de 
+            senha é igual ao número total de pessoas atendidas +1.
+        </td>
+        <td>
+            <form action="/esta_quase">
+                <input type="Submit" value="Ir para página do quase"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/arduino_mandou_id</tt>
+        </td>
+        <td>
+            Quando estamos neste endpoint vamos criar um túpulo no formato 
+            (nº senha, nº guichê, pin).
+        </td>
+        <td>
+            <form action="/arduino_mandou_id">
+                <input type="Submit" value="Search"/>
+            </form>
+        </td>
+    </tr>
+</table>
+ 
+
+
+
+
+{% endblock %}

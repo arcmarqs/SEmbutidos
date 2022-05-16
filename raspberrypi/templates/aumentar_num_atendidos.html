@@ -1,0 +1,24 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<body>
+
+<h1>Número de Pessoas que já foram atendidas.</h1>
+
+<h3>Uma pessoa é considerada atendida depois de inserir o seu pin com sucesso 
+    no guichê.
+</h3>
+
+<table>
+    <tr>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>
+            {{ data }}
+        </td>
+    </tr>
+    
+</table>
+
+{% endblock %}
