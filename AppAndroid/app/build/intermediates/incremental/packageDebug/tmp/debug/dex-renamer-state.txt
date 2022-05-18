@@ -1,0 +1,4 @@
+#Mon May 16 22:27:36 WEST 2022
+base.0=/home/pv/Documentos/4Ano/2Semestre/SE_Crisóstomo_Brandão/Grupo3/TirarSenha/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

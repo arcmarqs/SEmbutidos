@@ -1,0 +1,5 @@
+pt/fcup/tirarsenha/BuildConfig.java
+ pt.fcup.tirarsenha.BuildConfig
+pt/fcup/tirarsenha/MainActivity.java
+ pt.fcup.tirarsenha.GetTicketRequestTask
+ pt.fcup.tirarsenha.MainActivity
