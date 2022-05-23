@@ -1,0 +1,27 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>Filas de Espera</h1>
+
+<table>
+    <tr>
+        <th>Número</th>
+        <th>Balcão</th>
+    </tr>
+    {% for guiche in data['guicheArray'] %}
+    <tr>
+        <td>
+            {{ guiche["ticketNumber"] }}
+        </td>
+        <td>
+            {{ guiche["guichetId"] }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+ 
+
+
+
+
+{% endblock %}
