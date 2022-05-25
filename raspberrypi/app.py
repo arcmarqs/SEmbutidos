@@ -26,6 +26,7 @@ class MessageAnnouncer:
     def listen(self):
         q = queue.Queue(maxsize=5)
         self.listeners.append(q)
+        self.listeners[0].put_nowait(format_sse(data="You have successfully connected."))
         return q
 
     def announce(self, msg):
@@ -90,7 +91,7 @@ def index():
 @app.route('/sendNotification')
 def sendNotification():
     global currentNumber
-    msg = format_sse(data='pong')
+    msg = format_sse(data=currentNumber)
     announcer.announce(msg=msg)
     return {}, 200
 
@@ -137,7 +138,7 @@ def getTicket():
     highestNumber += 1;
     pinCode = generatePin()
 
-    usersDictionary['{}'.format(highestNumber)] = ipAndroid
+    usersDictionary[highestNumber] = (pinCode,ipAndroid)
 
     print(usersDictionary)
 
@@ -153,6 +154,7 @@ def getTicket():
             })
     return flask.jsonify({
         "highestNumber": highestNumber,
+        "pinCode":pinCode,
     })         
 
 
@@ -161,32 +163,30 @@ def checkOut():
     global guicheArray
     global currentNumber
     global highestNumber
+    global usersDictionary
+    guichetId = flask.request.args.get("guichetId", type=int)
 
-    guichetId = flask.request.args.get("guichetId")
+    print("Checking out",guichetId)
 
-    isAlreadyDone = False
-
-
-    for guiche in guicheArray:
-        
-        if (str(guiche["ticketNumber"]) == currentNumber) and (str(guiche["guichetId"]) == guichetId):
-            isAlreadyDone = True
-            guiche["ticketNumber"] = None
-            guiche["pin"] = None
-            if(highestNumber > currentNumber):
-                currentNumber = currentNumber + 1
-                guiche["ticketNumber"] = currentNumber
-                guiche["pin"] = generatePin()
-            break
+    guiche = guicheArray[guichetId]
+    print(str(guiche["ticketNumber"]))
+    print(currentNumber)
+    print(guiche["guichetId"])
+    print("eval" + str(guiche["guichetId"]) == guichetId)
+    guiche["ticketNumber"] = None
+    guiche["pin"] = None
+    if(highestNumber > currentNumber):
+        currentNumber += 1
+        guiche["ticketNumber"] = currentNumber
+        guiche["pin"] = usersDictionary[currentNumber][0]
     
-    
-    print(usersDictionary)
-    announcer.listeners.append(usersDictionary['{}'.format(currentNumber)])
-    msg = format_sse(data='Está quase!')
+    msg = format_sse(data=currentNumber)
     announcer.announce(msg=msg)
 
     return flask.jsonify({
-        "isAlreadyDone": isAlreadyDone
+        "this_guichet": guichetId,
+        "currentNumber": currentNumber,
+        "pinCode": usersDictionary[currentNumber][0]
     })
 
 if __name__ == '__main__':
