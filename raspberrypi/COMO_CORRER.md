@@ -1,6 +1,7 @@
 Como correr a API?
 
-`python3 main.py`
+gunicorn -k gevent -b 127.0.0.1:8000  wsgi:app
+
 
 Endpoints:
 
