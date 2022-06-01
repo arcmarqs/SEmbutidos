@@ -7,7 +7,7 @@
 
 //teclado
 
-byte linha [] ={0,1,2,3};
+byte linha [] ={22,24,26,28};
 char teclas [4] =  {'2', '1','4', '3'};
 
 String passere="1234";
@@ -15,14 +15,15 @@ String passe ="";
 int cc =0;
 
 //display
-#define pinBotoes A0
+#define pinBotoes A15
 
-#define pinRs 8 //pino rs
-#define pinEn 9 //pino enable
-#define pinD4 4
-#define pinD5 5
-#define pinD6 6
-#define pinD7 7
+#define pinD10 43
+#define pinRs 39 //pino rs 8
+#define pinEn 41 //pino enable 9
+#define pinD4 31 //4
+#define pinD5 33 //5
+#define pinD6 35 //6 
+#define pinD7 37 //7
 
 LiquidCrystal lcd(pinRs, pinEn, pinD4, pinD5, pinD6, pinD7);
  
@@ -35,8 +36,10 @@ WiFiServer server(80);
 
 void setup() {
  
-  //Serial.begin(9600);
+  Serial.begin(9600);
   lcd.begin(16,2);
+  //lcd.println("dasssssssssssssss");
+  //Serial.println("dassssssssssss");
   //Serial.println("Attempting to connect to WPA network...");
 
   status = WiFi.begin(ssid, pass);
@@ -68,7 +71,7 @@ void setup() {
  if ( status != WL_CONNECTED) {
 
     //Serial.println("Couldn't get a wifi connection");
-    lcd.print("nconect");
+    lcd.print("naoconect");
     while(true);
 
   }
@@ -76,8 +79,8 @@ void setup() {
   // if you are connected, print out info about the connection:
 
   else {
-    lcd.print("C0nect");
-    //Serial.println("Connected to network");
+    lcd.print("Connect to network");
+    Serial.println("Connected to network");
 
   }
   
@@ -85,10 +88,10 @@ void setup() {
   /*for(int i=0; i<4; i++)
     pinMode(linha[i], INPUT_PULLUP);*/
 
-   pinMode(0, INPUT_PULLUP);
-   pinMode(1, INPUT_PULLUP);
-   pinMode(2, INPUT_PULLUP);
-   pinMode(3, INPUT_PULLUP);
+   pinMode(22, INPUT_PULLUP);
+   pinMode(24, INPUT_PULLUP);
+   pinMode(26, INPUT_PULLUP);
+   pinMode(28, INPUT_PULLUP);
 
    //lcd.print("OK");
 
@@ -100,17 +103,17 @@ void loop() {
   //WiFiClient client = server.available();
   
   int b= analogRead(pinBotoes);
-  //Serial.println(b);
+  
   delay(100);
   if(b < 800){
+    Serial.println(b);
     passe="";
     cc=0;
     lcd.clear();
     delay(100);
     //c++;
     lcd.clear();
-    //lcd.print("pqrstuvwsyz");
-    lcd.print("Put passw0rd");
+    lcd.print("Put the password:");
     lcd.setCursor(0,1);
     //delay(1000);  
 
@@ -121,6 +124,7 @@ void loop() {
         //Serial.println(teclas[i]);
         if(cc < 4){
           passe += teclas[i];
+          //Serial.println(teclas[i]);
           lcd.print("*");
           cc++;
       
@@ -133,7 +137,7 @@ void loop() {
         if(cc == 4){
           lcd.clear();
           if(passere.equals(passe)){
-            lcd.print("C0rrect!");
+            lcd.print("Correct!");
             //lcd.print("TRUE");
             lcd.setCursor(0,1);
             lcd.print(passe);
@@ -142,7 +146,7 @@ void loop() {
           }
           else {
             lcd.clear();
-            lcd.print("Inc0rrect" + passe);
+            lcd.print("Incorrect, put again:");
             lcd.setCursor(0,1);
             //lcd.setCursor(0,1);
             //lcd.print(passe);
