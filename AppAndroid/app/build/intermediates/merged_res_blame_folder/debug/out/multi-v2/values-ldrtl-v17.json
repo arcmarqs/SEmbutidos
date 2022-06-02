@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/pv/Documentos/4Ano/2Semestre/SE_Crisóstomo_Brandão/Grupo3/TirarSenha/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.tirarsenha.app-mergeDebugResources-23:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "/home/pv/.gradle/caches/transforms-2/files-2.1/723282c7994550298e26d567cb0e519b/material-1.3.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "source": "/home/pv/.gradle/caches/transforms-3/1217d3aa52fa78bda9a0244b3a55003a/transformed/material-1.6.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

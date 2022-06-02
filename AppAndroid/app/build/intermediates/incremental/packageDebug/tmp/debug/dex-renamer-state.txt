@@ -1,4 +1,10 @@
-#Mon May 16 22:27:36 WEST 2022
-base.0=/home/pv/Documentos/4Ano/2Semestre/SE_Crisóstomo_Brandão/Grupo3/TirarSenha/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
+#Thu Jun 02 17:10:46 WEST 2022
+base.2=/home/pv/Desktop/AppTirarSenha/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
+path.2=8/classes.dex
+base.1=/home/pv/Desktop/AppTirarSenha/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+path.1=0/classes.dex
+base.0=/home/pv/Desktop/AppTirarSenha/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+path.0=classes.dex
