@@ -29,11 +29,11 @@ int cc =0;
 LiquidCrystal lcd(pinRs, pinEn, pinD4, pinD5, pinD6, pinD7);
  
 //wifi
-char ssid[] = "iPhone de Pedrilson";
-char pass[] = "Pedrilson";
+char ssid[] = "iPhone de Pedrilson";//"embutidos";
+char pass[] = "Pedrilson";//"TouNess@";
 int status = WL_IDLE_STATUS;
 int count =30;
-WiFiServer server(80);
+WiFiServer server('194.210.211.35');
 
 void setup() {
  
@@ -82,6 +82,19 @@ void loop() {
   delay(100);
   //if click in button, print msg "Put the password"
   if(b < 800){
+    /*
+    WiFiClient client = server.available();
+    client.Write(count);
+
+    */
+    //enviar o sinal ao raspberry count =(nº de arduino)
+    server.write(count);
+    //pin recebido do raspberry
+    passere = request();
+    
+
+
+    
     Serial.println(b);
     passe="";
     cc=0;
@@ -124,83 +137,21 @@ void loop() {
         }
       }
   }
-
-  
-  /*if(passere.equals(passe))
-      lcd.println("CORRECT!");
-    else
-      lcd.println("INCORRECT");*/
-
-  
-  /*if (client) {
-
-    Serial.println("new client");
-
-    // an http request ends with a blank line
-
-    bool currentLineIsBlank = true;
-
-    while (client.connected()) {
-
-      if (client.available()) {
-
-        char c = client.read();
-
-        Serial.write(c);
-
-        // if you've gotten to the end of the line (received a newline
-
-        // character) and the line is blank, the http request has ended,
-
-        // so you can send a reply
-
-        if (c == '\n' && currentLineIsBlank) {
-
-          // send a standard http response header
-
-          client.println("HTTP/1.1 200 OK");
-
-          client.println("Content-Type: text/html");
-
-          client.println("Connection: close");  // the connection will be closed after completion of the response
-
-          client.println("Refresh: 5");  // refresh the page automatically every 5 sec
-
-          client.println();
-
-          client.println("<!DOCTYPE HTML>");
-
-          client.println("<html>");
-
-          client.print("COUNT = ");
-          client.println(count);
-
-          client.println("</html>");
-
-          break;
-
-        }
-
-        if (c == '\n') {
-
-          // you're starting a new line
-
-          currentLineIsBlank = true;
-
-        } 
-        else if (c != '\r') {
-
-          // you've gotten a character on the current line
-
-          currentLineIsBlank = false;
-        }
-
-      }
-    }
-  }
-
-   */    
 }
+
+  String  request(){
+    String s = "";
+    WiFiClient client = server.available();
+    while (client == true) {
+      char c = client.read();
+      Serial.println(c);
+      s +=c;
+      //server.write(client.read());
+    }
+    return s;
+  }
+  
+
 
 //list the networks 
 void listNetworks() {
@@ -240,66 +191,3 @@ void listNetworks() {
   }
 }
 
-
-
-
-
-//Serial.println("Count = " + count);
- 
-  // listen for incoming clients
- /* EthernetClient client = server.available();
-  if (client) {
-    Serial.println("new client");
-    // an http request ends with a blank line
-    boolean currentLineIsBlank = true;
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.write(c);
-        // if you've gotten to the end of the line (received a newline
-        // character) and the line is blank, the http request has ended,
-        // so you can send a reply
-        if (c == '\n' && currentLineIsBlank) {
-          // send a standard http response header
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-Type: text/html");
-          client.println("Connection: close");  // the connection will be closed after completion of the response
-          client.println("Refresh: 5");  // refresh the page automatically every 5 sec
-          client.println();
-          client.println("<!DOCTYPE HTML>");
-          client.println("<html>");
-          client.println("<head>");
-          // output the value of each analog input pin
-          /*for (int analogChannel = 0; analogChannel < 6; analogChannel++) {
-            int sensorReading = analogRead(analogChannel);
-            client.print("analog input ");
-            client.print(analogChannel);
-            client.print(" is ");
-            client.print(sensorReading);
-            client.println("<br />");
-          }*/
-         /* client.println("<title>FILA DE ESPERA</title>");
-          client.println("</head>");
-          client.println("<body>");
-          client.print("Count = ");
-          client.println(count);
-          client.println("</body>");
-          client.println("</html>");
-          break;
-        }
-        if (c == '\n') {
-          // you're starting a new line
-          currentLineIsBlank = true;
-        } else if (c != '\r') {
-          // you've gotten a character on the current line
-          currentLineIsBlank = false;
-        }
-      }
-    }
-    // give the web browser time to receive the data
-    delay(1);
-    // close the connection:
-    client.stop();
-    Serial.println("client disconnected");
-  }
-  }*/
