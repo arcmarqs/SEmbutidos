@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SemSenha">
+
+    <TextView
+        android:id="@+id/txt_npossivel"
+        android:layout_width="273dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:text="@string/_0"
+        android:textAlignment="center"
+        android:textColor="#931A1A"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_possivel" />
+
+    <TextView
+        android:id="@+id/txt_possivel"
+        android:layout_width="269dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="75dp"
+        android:text="@string/n_mero_poss_vel_de_senha"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_senha_atual" />
+
+    <TextView
+        android:id="@+id/txt_senha_atual"
+        android:layout_width="273dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:text="@string/_01"
+        android:textAlignment="center"
+        android:textColor="#931A1A"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_numeroatual" />
+
+    <TextView
+        android:id="@+id/txt_numeroatual"
+        android:layout_width="273dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="75dp"
+        android:text="@string/n_mero_da_senha_atual"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_pedir_senha"
+        android:layout_width="273dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/pedir_senha"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
