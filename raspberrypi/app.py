@@ -167,7 +167,7 @@ def nextClient():
         currentNumber += 1
         guiche["ticketNumber"] = currentNumber
         guiche["pin"] = usersDictionary[currentNumber][0]
-
+    '''
     if (currentNumber == 0):
             guiche = guicheArray[guichetId]
             currentNumber += 1
@@ -176,16 +176,17 @@ def nextClient():
             print("map",usersDictionary)
             guiche["pin"] = usersDictionary[currentNumber][0]
     else:
-        guiche = guicheArray[guichetId]
-        print("current",currentNumber)
-        print("map",usersDictionary)        
-        guiche["ticketNumber"] = None
-        guiche["pin"] = None
-        if(highestNumber > currentNumber):
-            currentNumber += 1
-            guiche["ticketNumber"] = currentNumber
-            guiche["pin"] = usersDictionary[currentNumber][0]
-        
+    '''    
+    guiche = guicheArray[guichetId]
+    print("current",currentNumber)
+    print("map",usersDictionary)        
+    guiche["ticketNumber"] = None
+    guiche["pin"] = None
+    if(highestNumber > currentNumber):
+        currentNumber += 1
+        guiche["ticketNumber"] = currentNumber
+        guiche["pin"] = usersDictionary[currentNumber][0]
+    
 
     msg = format_sse(data=currentNumber)
     announcer.announce(msg=msg)
