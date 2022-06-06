@@ -67,7 +67,7 @@ usersDictionary = {}
 def generatePin():
   return ("".join([str(i) for i in random.sample([1,2,3,4],4)]))
 
-def format_sse(data: str, event=None) -> str:
+def format_sse(data, event=None):
     msg = f'data: {data}\n\n'
     if event is not None:
         msg = f'event: {event}\n{msg}'

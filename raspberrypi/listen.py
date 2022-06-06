@@ -1,6 +1,6 @@
 import sseclient
 
-messages = sseclient.SSEClient('http://127.0.0.1:8001/listen')
+messages = sseclient.SSEClient('http://172.17.66.214:8080/listen')
 
 for msg in messages:
     print(msg)
