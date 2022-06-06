@@ -23,7 +23,7 @@ import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static final String api_url = "http://192.168.1.68:8080/";
+    public static final String api_url = "http://192.168.1.68:8000/";
     public static final String EXTRA_VALOR1="com.example.applications.tirarsenha.EXTRA_VALOR1";
     public static final String EXTRA_VALOR2="com.example.applications.tirarsenha.EXTRA_VALOR2";
     public static final String EXTRA_VALOR3="com.example.applications.tirarsenha.EXTRA_VALOR3";
