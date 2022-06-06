@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
+
+import java.net.URISyntaxException;
+
 public class Codigo extends AppCompatActivity {
     private TextView guiche, codigo;
 
@@ -23,6 +27,14 @@ public class Codigo extends AppCompatActivity {
 
         codigo = findViewById(R.id.txt_codigo);
         codigo.setText(pinCode); //Código
+
+
+
+
+
+
+
+
 
         Button btnSenha = findViewById(R.id.btn_te);
         btnSenha.setOnClickListener(v -> {
