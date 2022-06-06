@@ -2,7 +2,7 @@
 import os
 import queue
 import logging
-from random import randint
+import random
 from unittest import result
 import flask
 import warnings
@@ -30,9 +30,9 @@ class MessageAnnouncer:
         return q
 
     def announce(self, msg):
-        print("yyy",len(self.listeners))
+        print("len",len(self.listeners))
         for i in reversed(range(len(self.listeners))):
-            print("xxxxxxxxxxxxxx",self.listeners)
+            print("listeners",self.listeners)
             print(self.listeners[i])
             try:
                 self.listeners[i].put_nowait(msg)
@@ -65,7 +65,7 @@ usersDictionary = {}
 # Helper functions
 
 def generatePin():
-    return str(randint(0, 9999)).zfill(4)
+  return ("".join([str(i) for i in random.sample([1,2,3,4],4)]))
 
 def format_sse(data: str, event=None) -> str:
     msg = f'data: {data}\n\n'
@@ -141,22 +141,20 @@ def getTicket():
     usersDictionary[highestNumber] = (pinCode,ipAndroid)
 
     print(usersDictionary)
+
     return flask.jsonify({
         "highestNumber": highestNumber,
         "pinCode":pinCode,
     })         
 
 
-@app.route('/checkOut')
-def checkOut():
+@app.route('/nextClient')
+def nextClient():
     global guicheArray
     global currentNumber
     global highestNumber
     global usersDictionary
     guichetId = flask.request.args.get("guichetId", type=int)
-
-
-    print("Checking out",guichetId)
 
     guiche = guicheArray[guichetId]
     print(str(guiche["ticketNumber"]))
@@ -169,10 +167,29 @@ def checkOut():
         currentNumber += 1
         guiche["ticketNumber"] = currentNumber
         guiche["pin"] = usersDictionary[currentNumber][0]
-    
+
+    if (currentNumber == 0):
+            guiche = guicheArray[guichetId]
+            currentNumber += 1
+            guiche["ticketNumber"] = currentNumber
+            print("current",currentNumber)
+            print("map",usersDictionary)
+            guiche["pin"] = usersDictionary[currentNumber][0]
+    else:
+        guiche = guicheArray[guichetId]
+        print("current",currentNumber)
+        print("map",usersDictionary)        
+        guiche["ticketNumber"] = None
+        guiche["pin"] = None
+        if(highestNumber > currentNumber):
+            currentNumber += 1
+            guiche["ticketNumber"] = currentNumber
+            guiche["pin"] = usersDictionary[currentNumber][0]
+        
+
     msg = format_sse(data=currentNumber)
     announcer.announce(msg=msg)
-
+    print(usersDictionary[currentNumber][0])
     return flask.jsonify({
         "this_guichet": guichetId,
         "currentNumber": currentNumber,
@@ -182,4 +199,4 @@ def checkOut():
 if __name__ == '__main__':
     # When invoked as a program.
     logging.info('Starting app')
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
