@@ -2,7 +2,7 @@
 import os
 import queue
 import logging
-from random import randint
+import random
 from unittest import result
 import flask
 import warnings
@@ -65,7 +65,7 @@ usersDictionary = {}
 # Helper functions
 
 def generatePin():
-    return str(randint(0, 9999)).zfill(4)
+  return ("".join([str(i) for i in random.sample([1,2,3,4],4)]))
 
 def format_sse(data: str, event=None) -> str:
     msg = f'data: {data}\n\n'
@@ -142,16 +142,16 @@ def getTicket():
 
     print(usersDictionary)
 
-    for guiche in guicheArray:
-        if (guiche["ticketNumber"] == None):
-            currentNumber = highestNumber
-            guiche["ticketNumber"] = highestNumber
-            guiche["pin"] = pinCode
-            return flask.jsonify({
-                "highestNumber": highestNumber,
-                "pinCode":pinCode,
-                "guichetNumber" : guiche["guichetId"]
-            })
+   ## for guiche in guicheArray:
+     ##   if (guiche["ticketNumber"] == None):
+        ##    currentNumber = highestNumber
+        ##    guiche["ticketNumber"] = highestNumber
+        ##    guiche["pin"] = pinCode
+        ##    return flask.jsonify({
+        ##        "highestNumber": highestNumber,
+        ##       "pinCode":pinCode,
+        ##        "guichetNumber" : guiche["guichetId"]
+        ##    })
     return flask.jsonify({
         "highestNumber": highestNumber,
         "pinCode":pinCode,
@@ -192,4 +192,4 @@ def checkOut():
 if __name__ == '__main__':
     # When invoked as a program.
     logging.info('Starting app')
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
