@@ -1,20 +1,10 @@
 package com.example.tirarsenha;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Request;
-import okhttp3.Response;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Atendido extends AppCompatActivity {
 
@@ -23,7 +13,10 @@ public class Atendido extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atendido);
 
-
+        Button btnSenha = findViewById(R.id.btn_denovosenha);
+        btnSenha.setOnClickListener(v -> {
+           openMainActivity();
+        });
 
     }
 

@@ -13,7 +13,7 @@
         android:layout_marginStart="63dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="75dp"
-        android:text="Esperamos que tenha gostado desta_experiência."
+        android:text="Esperamos que tenha gostado desta experiência."
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"

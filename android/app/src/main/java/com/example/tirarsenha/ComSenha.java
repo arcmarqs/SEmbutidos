@@ -1,12 +1,12 @@
 package com.example.tirarsenha;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,8 +18,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class ComSenha extends AppCompatActivity {
-
     private TextView senhaAtual, suaSenha;
+    private String guiche="", pinCode="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +27,23 @@ public class ComSenha extends AppCompatActivity {
         setContentView(R.layout.activity_com_senha);
 
         Intent intent = getIntent();
-        String anterior = intent.getStringExtra(MainActivity.EXTRA_RESPONSE);
+        String currentNumber = intent.getStringExtra(MainActivity.EXTRA_VALOR1);
+        String highestNumber = intent.getStringExtra(MainActivity.EXTRA_VALOR2);
+        pinCode = intent.getStringExtra(MainActivity.EXTRA_VALOR3);
 
         senhaAtual = findViewById(R.id.txt_senha_atual2);
-        senhaAtual.setText(anterior+"0"); //currentNumber
+        senhaAtual.setText(currentNumber);
 
         suaSenha = findViewById(R.id.txt_sua_senha);
-        suaSenha.setText(anterior+"0"); //highestNumber
+        suaSenha.setText(highestNumber);
 
+        //TODO: APAGAR SOMENTE PARA TESTE
         Button btnSenha = findViewById(R.id.btn_teste);
         btnSenha.setOnClickListener(v -> {
-            Request request = new Request.Builder().url(MainActivity.api_url + "listen").get().build();
+            Request request = new Request.Builder()
+                    .url(MainActivity.api_url + "/")
+                    .get()
+                    .build();
 
             MainActivity.okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
@@ -48,16 +54,38 @@ public class ComSenha extends AppCompatActivity {
                 }
 
                 @Override
-                public void onResponse(@NotNull Call call, @NotNull Response response) {
-                    openCodigo(request);
-                    ////currentNumber e highestNumber
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+
+                    /*String jsonString=response.body().string();
+                    JSONObject obj = null;
+                    try {
+                        obj = new JSONObject(jsonString);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        guiche= obj.getString("highestNumber");
+                        codigo= obj.getString("highestNumber");
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }*/
+
+
+
+                    openCodigo(guiche, pinCode);
+                    //currentNumber e highestNumber
                 }
             });
         });
     }
 
-    public void openCodigo(Request request) {
+    public void openCodigo(String guiche, String pinCode) {
         Intent intent = new Intent(this, Codigo.class);
+        intent.putExtra(MainActivity.EXTRA_VALOR1, guiche);
+        intent.putExtra(MainActivity.EXTRA_VALOR2, pinCode);
         startActivity(intent);
     }
 }
