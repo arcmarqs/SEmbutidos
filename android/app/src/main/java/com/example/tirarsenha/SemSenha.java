@@ -47,15 +47,28 @@ public class SemSenha extends AppCompatActivity {
                 }
 
                 @Override
-                public void onResponse(@NotNull Call call, @NotNull Response response) {
-                    openComSenha(request);
-                    ////currentNumber e highestNumber
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    if(response.isSuccessful()){
+                        openComSenha(response);
+                        //currentNumber e highestNumber+1
+
+                        ///*
+                        final String myResponse=response.body().string();
+                        SemSenha.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                senhaAtual.setText(myResponse);
+                            }
+                        });
+                        //*/
+                    }
                 }
+
             });
         });
     }
 
-    public void openComSenha(Request request){
+    public void openComSenha(Response response){
         Intent intent=new Intent(this, ComSenha.class);
         startActivity(intent);
 

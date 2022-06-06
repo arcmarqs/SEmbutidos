@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Tirar Senha</string>
-    <!--<string name="api_url">http://192.168.1.5:8080</string>-->
-    <string name="api_url">http://193.137.151.198:8080</string>
-
+    <string name="app_name">tirarsenha</string>
+    <string name="senha">senha</string>
+    <string name="tirarsenha">Senha</string>
+    <string name="ecranovo">ecranovo</string>
+    <string name="n_mero_da_senha_atual">Número da Senha Atual</string>
+    <string name="_0">0</string>
+    <string name="n_mero_poss_vel_de_senha">Número Possível de Senha</string>
+    <string name="_01">0</string>
+    <string name="pedir_senha">Pedir Senha</string>
 </resources>

@@ -7,40 +7,65 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/numeroAtribuido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
-
-    <Button
-        android:id="@+id/btnTirarSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pedir Senha"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/tt"
+        android:layout_width="343dp"
+        android:layout_height="154dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="30dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroAtribuido"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/helperText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="140dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="Clique no botão abaixo para tirar uma senha!"
-        app:layout_constraintBottom_toTopOf="@+id/numeroAtribuido"
+        android:id="@+id/txt_cadeira"
+        android:layout_width="316dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
+        android:text="Sistemas Embutidos"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_titulo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_titulo"
+        android:layout_width="272dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="75dp"
+        android:text="Aplicação para pedir senhar digitais"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cadeira" />
+
+    <Button
+        android:id="@+id/btn_iniciar"
+        android:layout_width="208dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="100dp"
+        android:text="Vamos Começar"
+        android:textColorHighlight="#FFFFFF"
+        app:iconTint="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
