@@ -141,6 +141,7 @@ def getTicket():
     usersDictionary[highestNumber] = (pinCode,ipAndroid)
 
     print(usersDictionary)
+<<<<<<< HEAD
 
    ## for guiche in guicheArray:
      ##   if (guiche["ticketNumber"] == None):
@@ -152,6 +153,8 @@ def getTicket():
         ##       "pinCode":pinCode,
         ##        "guichetNumber" : guiche["guichetId"]
         ##    })
+=======
+>>>>>>> 13d986b (com refresh automatico e correção da alocação automática dos primeiros 2 clientes)
     return flask.jsonify({
         "highestNumber": highestNumber,
         "pinCode":pinCode,
@@ -165,6 +168,7 @@ def checkOut():
     global highestNumber
     global usersDictionary
     guichetId = flask.request.args.get("guichetId", type=int)
+
 
     print("Checking out",guichetId)
 
