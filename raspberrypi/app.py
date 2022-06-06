@@ -30,9 +30,9 @@ class MessageAnnouncer:
         return q
 
     def announce(self, msg):
-        print("yyy",len(self.listeners))
+        print("len",len(self.listeners))
         for i in reversed(range(len(self.listeners))):
-            print("xxxxxxxxxxxxxx",self.listeners)
+            print("listeners",self.listeners)
             print(self.listeners[i])
             try:
                 self.listeners[i].put_nowait(msg)
@@ -166,23 +166,27 @@ def checkOut():
     global usersDictionary
     guichetId = flask.request.args.get("guichetId", type=int)
 
-    print("Checking out",guichetId)
-
-    guiche = guicheArray[guichetId]
-    print(str(guiche["ticketNumber"]))
-    print(currentNumber)
-    print(guiche["guichetId"])
-    print("eval" + str(guiche["guichetId"]) == guichetId)
-    guiche["ticketNumber"] = None
-    guiche["pin"] = None
-    if(highestNumber > currentNumber):
-        currentNumber += 1
-        guiche["ticketNumber"] = currentNumber
-        guiche["pin"] = usersDictionary[currentNumber][0]
-    
+    if (currentNumber == 0):
+            guiche = guicheArray[guichetId]
+            currentNumber += 1
+            guiche["ticketNumber"] = currentNumber
+            print("current",currentNumber)
+            print("map",usersDictionary)
+            guiche["pin"] = usersDictionary[currentNumber][0]
+    else:
+        guiche = guicheArray[guichetId]
+        print("current",currentNumber)
+        print("map",usersDictionary)        
+        guiche["ticketNumber"] = None
+        guiche["pin"] = None
+        if(highestNumber > currentNumber):
+            currentNumber += 1
+            guiche["ticketNumber"] = currentNumber
+            guiche["pin"] = usersDictionary[currentNumber][0]
+        
     msg = format_sse(data=currentNumber)
     announcer.announce(msg=msg)
-
+    print(usersDictionary[currentNumber][0])
     return flask.jsonify({
         "this_guichet": guichetId,
         "currentNumber": currentNumber,

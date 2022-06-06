@@ -1,6 +1,6 @@
 Como correr a API?
 
-gunicorn -k gevent -b 127.0.0.1:8000  wsgi:app
+gunicorn -k gevent -b <ip:port>  wsgi:app
 
 
 Endpoints:
